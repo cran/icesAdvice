@@ -2,17 +2,17 @@
 % Please edit documentation in R/icesAdvice-package.R
 \docType{package}
 \name{icesAdvice-package}
-\alias{icesAdvice}
 \alias{icesAdvice-package}
+\alias{icesAdvice}
 \title{Functions Related to ICES Advice}
 \description{
-Functions that are related to the advisory work of ICES (International
-Council for the Exploration of the Sea).
+Functions that are related to the ICES advisory process.
 }
 \details{
 \emph{Evaluate ICES advice:}
 \tabular{ll}{
-  \code{\link{DLS3.2}} \tab DLS method 3.2
+  \code{\link{DLS3.2}}    \tab DLS method 3.2\cr
+  \code{\link{icesRound}} \tab rounding method
 }
 \emph{Calculate PA reference points:}
 \tabular{ll}{
@@ -25,11 +25,10 @@ Council for the Exploration of the Sea).
   \code{\link{sigmaPA}} \tab from PA reference points
 }
 }
+\references{
+ICES advisory process:
+\url{http://ices.dk/community/advisory-process/}.
+}
 \author{
 Arni Magnusson and Anne Cooper, with contributions by Colin Millar.
 }
-\references{
-ICES advisory process:
-\url{http://ices.dk/community/advisory-process/Pages/default.aspx}.
-}
-

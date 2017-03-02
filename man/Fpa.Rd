@@ -22,7 +22,7 @@ Calculate the value of Fpa from Flim and sigmaF.
 By comparing the current F to Fpa, one can answer the question: are we at
 least 95\% sure that F is below Flim, given the estimation uncertainty?
 
-The ICES (2016) technical guidelines define Fpa as:
+The ICES (2017) technical guidelines define Fpa as:
 
 \deqn{F_\mathrm{pa} = F_\mathrm{lim} \exp(-1.645\sigma_F)}{
       Fpa = Flim * exp(-1.645*sigmaF)}
@@ -34,13 +34,11 @@ on harvest rate: Hpa from Hlim and sigmaH.
 Fpa(0.90, 0.15)
 
 }
-\author{
-Arni Magnusson.
-}
 \references{
-ICES. 2016. Advice Technical Guidelines: ICES fisheries management reference
-points for category 1 stocks. \cite{Draft document version 30 (2016-04-21),
-available at the ACOM Meetings area on the ICES Sharepoint.}
+ICES. 2017. ICES fisheries management reference points for category 1
+and 2 stocks.
+\href{http://ices.dk/sites/pub/Publication\%20Reports/Advice/2017/2017/12.04.03.01_Reference_points_for_category_1_and_2.pdf}{\cite{ICES
+Advice Technical Guidelines 12.4.3.1}}.
 }
 \seealso{
 \code{\link{Bpa}} calculates that reference point from Blim and sigmaB.
@@ -49,4 +47,6 @@ available at the ACOM Meetings area on the ICES Sharepoint.}
 
 \code{\link{icesAdvice-package}} gives an overview of the package.
 }
-
+\author{
+Arni Magnusson.
+}
