@@ -22,9 +22,9 @@
 #' @author Arni Magnusson with a contribution by Colin Millar.
 #'
 #' @references
-#' ICES. 2017. Rounding rules to be applied in ICES advice. \cite{Draft document
-#' version 23 (2017-03-01), available at the Advice Technical Guidelines area on
-#' the ICES Sharepoint.}
+#' ICES. 2017. Rounding rules to be applied in ICES advice.
+#' \href{http://ices.dk/sites/pub/Publication\%20Reports/Advice/2017/2017/16.05.03_Rounding_rules_in_ICES_advice.pdf}{\cite{ICES
+#' Advice Technical Guidelines 16.5.3}}.
 #'
 #' @seealso
 #' \code{\link{signif}} rounds values to a specified number of significant
@@ -36,10 +36,14 @@
 #' icesRound(0.123456)
 #' icesRound(0.2468)
 #'
+#' ## Formatted string or numeric
+#' icesRound(1.0)
+#' as.numeric(icesRound(1.0))
+#'
 #' ## Example from the ICES Technical Guidelines
 #' Actual <- c(0.35776, 0.34665, 0.202, 0.12665, 0.001567, 0.002567, 0.013415,
 #'             0.02315, 1.168, 2.15678, 9.546, 10.546, 23.445, -1.482, -9.09,
-#'             0.51, 130.11)
+#'             0.51, 130.11, 584)
 #' Rounded <- icesRound(Actual)
 #' print(data.frame(Actual=as.character(Actual), Rounded), row.names=FALSE)
 #'
