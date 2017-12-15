@@ -10,8 +10,7 @@ icesRound(x)
 \item{x}{the value(s) to round.}
 }
 \value{
-Rounded value(s) as a \code{noquote} string object, retaining
-trailing zeros.
+Rounded value(s) as a \code{noquote} string object, retaining trailing zeros.
 }
 \description{
 Round a value according to the ICES Advice Technical Guidelines.
@@ -45,8 +44,8 @@ print(data.frame(Actual=as.character(Actual), Rounded), row.names=FALSE)
 
 }
 \references{
-ICES. 2017. Rounding rules to be applied in ICES advice.
-\href{http://ices.dk/sites/pub/Publication\%20Reports/Advice/2017/2017/16.05.03_Rounding_rules_in_ICES_advice.pdf}{\cite{ICES
+ICES (2017) Rounding rules to be applied in ICES advice.
+\href{http://ices.dk/sites/pub/Publication\%20Reports/Advice/2017/2017/16.05.03_Rounding_rules_in_ICES_advice.pdf}{\emph{ICES
 Advice Technical Guidelines 16.5.3}}.
 }
 \seealso{
