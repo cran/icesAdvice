@@ -1,11 +1,14 @@
 #' ICES Rounding Method
 #'
-#' Round a value according to the ICES Advice Technical Guidelines.
+#' Round values according to the ICES Advice Technical Guidelines.
 #'
-#' @param x the value(s) to round.
+#' @param x the values to round.
+#' @param percent whether to format values with a percent suffix.
+#' @param sign whether to format values with a sign prefix.
+#' @param na what to return when x is \code{NA}.
 #'
 #' @return
-#' Rounded value(s) as a \code{noquote} string object, retaining trailing zeros.
+#' Rounded values as a \code{noquote} string vector, retaining trailing zeros.
 #'
 #' @note
 #' This function implements the following ICES rounding method:
@@ -17,14 +20,14 @@
 #' }
 #' As indicated in the ICES (2017) technical guidelines, this rounding method
 #' should not be applied to biomass, catch, or number of individuals. For those
-#' quantities, use the normal \code{round} function instead.
+#' quantities, use the normal \code{\link{round}} function instead.
 #'
-#' @author Arni Magnusson with a contribution by Colin Millar.
+#' @author Colin Millar and Arni Magnusson.
 #'
 #' @references
 #' ICES (2017) Rounding rules to be applied in ICES advice.
-#' \href{http://ices.dk/sites/pub/Publication\%20Reports/Advice/2017/2017/16.05.03_Rounding_rules_in_ICES_advice.pdf}{\emph{ICES
-#' Advice Technical Guidelines 16.5.3}}.
+#' \href{https://doi.org/10.17895/ices.pub.3038}{\emph{ICES Advice Technical
+#' Guidelines 16.5.3}}.
 #'
 #' @seealso
 #' \code{\link{signif}} rounds values to a specified number of significant
@@ -40,39 +43,49 @@
 #' icesRound(1.0)
 #' as.numeric(icesRound(1.0))
 #'
+#' ## Percent, sign, NA
+#' icesRound(33.33, percent = TRUE)
+#' icesRound(33.33, sign = TRUE)
+#' icesRound(c(1, NA, 3))
+#' icesRound(c(1, NA, 3), na = NA)
+#'
 #' ## Example from the ICES Technical Guidelines
 #' Actual <- c(0.35776, 0.34665, 0.202, 0.12665, 0.001567, 0.002567, 0.013415,
-#'             0.02315, 1.168, 2.15678, 9.546, 10.546, 23.445, -1.482, -9.09,
-#'             0.51, 130.11, 584)
+#'             0.02315, 1.168, 2.15678)
 #' Rounded <- icesRound(Actual)
-#' print(data.frame(Actual=as.character(Actual), Rounded), row.names=FALSE)
+#' print(data.frame(Actual = as.character(Actual), Rounded), row.names = FALSE)
+#'
+#' ## Continued example from Guidelines, now rounding percentages
+#' Actual <- c(9.546, 10.546, 23.445, -1.482, -9.09, 0.51, 130.11, 584)
+#' Rounded <- icesRound(Actual, percent = TRUE)
+#' print(data.frame(Actual = as.character(Actual), Rounded), row.names = FALSE)
 #'
 #' @export
 
-icesRound <- function(x)
+icesRound <- function(x, percent = FALSE, sign = percent, na = "")
 {
-  if(length(x) > 1)
-  {
-    out <- sapply(x, icesRound)
-  }
-  else
-  {
-    x <- as.numeric(x)
-    onlySig <- sub("0\\.0*", "", abs(x))
-    firstSig <- substr(onlySig, 1, 1)
-    if(firstSig >= 2)
-    {
-      value <- signif(x, 2)
-      digits <- max(0, floor(-log10(abs(value))) + 2)
-    }
-    else
-    {
-      value <- signif(x, 3)
-      digits <- if(value == 0) 2
-                else max(0, floor(-log10(abs(value))-1e-10) + 3)
-      ## 1e-10 is a small constant to make sure 1->1.00, 0.1->0.100, etc.
-    }
-    out <- formatC(value, format="f", digits=digits)
-  }
+  # work on log base 10 scale
+  log10_x <- log10(abs(x))
+
+  # calculate significant figures
+  sf <- as.integer(log10_x %% 1 < log10(2)) + 2
+
+  # calculate number of decimal places needed
+  digits <- pmax(0, sf - 1 - floor(log10_x))
+
+  # special exception when x == 0
+  digits[x == 0] <- 2
+  sf[x == 0] <- 0
+
+  # suppress error when x is NA
+  digits[is.na(x)] <- 0
+
+  # format values
+  fmt <- paste0(if (sign) "%+." else "%.",
+                digits,
+                if (percent) "f%%" else "f")
+  out <- sprintf(fmt, signif(x, sf))
+  out[is.na(x)] <- na
+
   noquote(out)
 }
