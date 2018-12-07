@@ -19,6 +19,9 @@ Value of Fpa.
 Calculate the value of Fpa from Flim and sigmaF.
 }
 \note{
+The purpose of PA reference points is to apply a precautionary approach in
+fisheries management.
+
 By comparing the current F to Fpa, one can answer the question: are we at
 least 95\% sure that F is below Flim, given the estimation uncertainty?
 
@@ -27,7 +30,7 @@ The ICES (2017) technical guidelines define Fpa as:
 \deqn{F_\mathrm{pa} = F_\mathrm{lim} \exp(-1.645\sigma_F)}{
       Fpa = Flim * exp(-1.645*sigmaF)}
 
-The \code{Fpa} function can also be used to evaluate reference points based
+The \code{Fpa} function can also be used to calculate reference points based
 on harvest rate: Hpa from Hlim and sigmaH.
 }
 \examples{

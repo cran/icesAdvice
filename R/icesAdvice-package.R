@@ -6,10 +6,13 @@
 #'
 #' @title Functions Related to ICES Advice
 #'
-#' @description Functions that are related to the ICES advisory process.
+#' @description
+#' A collection of functions that facilitate computational steps related to
+#' advice for fisheries management, according to ICES guidelines. These include
+#' methods for calculating reference points and model diagnostics.
 #'
 #' @details
-#' \emph{Evaluate ICES advice:}
+#' \emph{Calculate ICES advice:}
 #' \tabular{ll}{
 #'   \code{\link{DLS3.2}}    \tab DLS method 3.2\cr
 #'   \code{\link{icesRound}} \tab rounding method
@@ -28,12 +31,17 @@
 #' \tabular{ll}{
 #'   \code{\link{mohn}} \tab Mohn's rho
 #' }
+#' \emph{Read and write files:}
+#' \tabular{ll}{
+#'   \code{\link{read.dls}}  \tab read \code{DLS3.2} results from file\cr
+#'   \code{\link{write.dls}} \tab write \code{DLS3.2} results to file
+#' }
 #' \emph{Example tables:}
 #' \tabular{ll}{
 #'   \code{\link{shake}} \tab Southern hake retro
 #' }
 #'
-#' @author Arni Magnusson and Anne Cooper, with contributions by Colin Millar.
+#' @author Arni Magnusson, Colin Millar, and Anne Cooper.
 #'
 #' @references
 #' ICES advisory process:
