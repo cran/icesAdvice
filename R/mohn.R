@@ -23,7 +23,6 @@
 #'
 #' @note
 #' Relative bias is defined as
-#'
 #' \deqn{b_i=\frac{\hat\theta^{R_i}_{T\!-i}\,-\,\hat\theta_{T\!-i}}{\hat\theta_{T\!-i}}}{relbias
 #' = (retro - base) / base}
 #' and Mohn's rho is the average relative bias:
@@ -32,21 +31,26 @@
 #' See Mohn (1999), Brooks and Legault (2016), ICES (2018), and
 #' \code{mohn(shake, details=TRUE)} for details.
 #'
-#' @author Arni Magnusson.
+#' @author Arni Magnusson, with a contribution from Ruben Verkempynck.
 #'
 #' @references
 #' Brooks, E. N. and Legault, C. M. (2016) Retrospective forecasting ---
 #' evaluating performance of stock projections in New England groundfish stocks.
-#' \emph{Canadian Journal of Fisheries and Aquatic Sciences} \bold{73},
+#' \emph{Canadian Journal of Fisheries and Aquatic Sciences}, \bold{73},
 #' 935--950.
 #'
 #' ICES (2018) Guidelines for calculating Mohn's rho: Retrospective bias in
 #' assessment. \emph{Draft document version 7 (2018-04-03), available at the
 #' Expert Groups area on the ICES Sharepoint.}
 #'
+#' ICES (2020) Workshop on Catch Forecast from Biased Assessments (WKFORBIAS;
+#' outputs from 2019 meeting).
+#' \doi{10.17895/ices.pub.5997}{\emph{ICES Scientific Reports
+#' 2(28)}}.
+#'
 #' Mohn, R. (1999) The retrospective problem in sequential population analysis:
 #' An investigation using cod fishery and simulated data. \emph{ICES Journal of
-#' Marine Science} \bold{56}, 473--488.
+#' Marine Science}, \bold{56}, 473--488.
 #'
 #' @seealso
 #' \code{\link{shake}} is a retrospective example table.
@@ -61,7 +65,11 @@
 #' mohn(shake, peels=3, plot=TRUE, col="black", ylim=0:1, yaxs="i")
 #' lines(as.numeric(rownames(shake)), shake$base, lwd=3)
 #'
-#' @importFrom graphics matplot points
+#' ## Plot last 10 years
+#' x <- rbind(matrix(1,28,6,dimnames=list(1981:2008,names(shake))), shake)
+#' mohn(tail(x, 10), plot=TRUE, lwd=2, main="main")
+#'
+#' @importFrom graphics matplot points title
 #' @importFrom stats na.omit
 #'
 #' @export
@@ -90,6 +98,7 @@ mohn <- function(x, peels=5, details=FALSE, plot=FALSE, ...)
   if(plot)
   {
     matplot(as.numeric(rownames(x)), x, type="l", lty=1, ann=FALSE, ...)
+    title(...)  # suppress matplot labels, but allow user to pass main/xlab/ylab
     points(as.numeric(rownames(compare)), compare$retro, ...)
   }
 
