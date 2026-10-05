@@ -1,5 +1,5 @@
 Package: icesAdvice
-Version: 2.1.1
+Version: 2.1.2
 Title: Functions Related to ICES Advice
 Authors@R: c(person("Arni", "Magnusson", role="aut"),
              person("Colin", "Millar", role=c("aut","cre"), email="colin.millar@ices.dk"),
@@ -16,9 +16,9 @@ URL: https://ices.dk/advice,
         https://github.com/ices-tools-prod/icesAdvice
 BugReports: https://github.com/ices-tools-prod/icesAdvice/issues
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2022-02-17 18:58:12 UTC; colin
+Packaged: 2026-10-05 20:33:30 UTC; rstudio
 Author: Arni Magnusson [aut],
   Colin Millar [aut, cre],
   Anne Cooper [aut],
@@ -26,4 +26,4 @@ Author: Arni Magnusson [aut],
   Raphael Girardin [ctb]
 Maintainer: Colin Millar <colin.millar@ices.dk>
 Repository: CRAN
-Date/Publication: 2022-02-18 10:00:02 UTC
+Date/Publication: 2026-10-05 20:50:02 UTC
